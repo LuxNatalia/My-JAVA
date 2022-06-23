@@ -58,7 +58,7 @@ public class Main {
         Map<Integer, Integer> map = new HashMap<>();
         if (list == null || list.isEmpty()) return map;
         for (Person p : list) {
-            if (!map.containsValue(p)) {  //здесь проверяется только ключ?
+            if (!map.containsKey(p.getAge())) {  //здесь проверяется только ключ?
                 map.put(p.getAge(), peers(list, p.getAge()).size());
 
             }
@@ -70,7 +70,7 @@ public class Main {
         Map<Integer, List<Person>> map = new HashMap<>();
         if (list == null || list.isEmpty()) return map;
         for (Person p : list) {
-            if (!map.containsValue(p)) {
+            if (!map.containsKey(p.getAge())) {
                 map.put(p.getAge(), peers(list, p.getAge()));
 
             }
