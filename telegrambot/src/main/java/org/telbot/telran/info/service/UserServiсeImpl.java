@@ -1,0 +1,56 @@
+package org.telbot.telran.info.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.telbot.telran.info.model.User;
+import org.telbot.telran.info.repository.UserRepository;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+@Service
+public class UserServiсeImpl implements UserServiсe {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ChannelService channelService;
+
+ /*   private void getInfoUserChannel(int userId, int channelId){
+        User user=getUser(userId);
+        channelService.getChannel(channelId);
+
+    }*/
+
+    @Override
+    public List<User> list() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User create(User user) {
+        User entity = userRepository.save(user);
+        return entity; //возвращает уже с объектом базы данных. с id
+    }
+
+    @Override
+    public User update(User user) {
+        User userEntity=userRepository.findById(user.getId()).get();
+        user.setName(user.getName()==null ? userEntity.getName(): user.getName());
+        User entity=userRepository.save(user);
+        return entity;
+    }
+
+    @Override
+    public void delete(int id) {
+       userRepository.deleteAllById(Collections.singleton(id));
+
+    }
+
+    public Optional<User> getUser(int id) {
+        Optional<User> user = userRepository.findById(id);
+
+        return user;
+    }
+
+}
