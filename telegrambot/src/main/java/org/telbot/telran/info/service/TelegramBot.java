@@ -7,12 +7,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
-        return "  bot";
+        return "LuksikBot";
     }
 
     @Override
     public String getBotToken() {
-        return "  ";
+        return "5945828450:AAEBsFqO3RYS86hM-ZXLITNNAnKU7Nf8_5o";
     }
 
     @Override

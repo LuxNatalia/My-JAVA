@@ -21,7 +21,7 @@ public class UserChannelController {
     //2. add subscription for user подписку
     //3. remove subscription for user
 
-    @Autowired
+    @Autowired(required = false)
     private UserChannelService userChannelService;
 
     @GetMapping

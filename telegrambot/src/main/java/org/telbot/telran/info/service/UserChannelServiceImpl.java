@@ -1,5 +1,6 @@
 package org.telbot.telran.info.service;
 
+import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telbot.telran.info.model.Channel;
 import org.telbot.telran.info.model.User;
@@ -10,7 +11,7 @@ import org.telbot.telran.info.repository.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
-
+@Service
 public class UserChannelServiceImpl implements UserChannelService {
 
     @Autowired
@@ -29,10 +30,17 @@ public class UserChannelServiceImpl implements UserChannelService {
 
     @Override
     public UserChannel create(User user, Channel channel) {
-        UserChannel entity= new UserChannel(user, channel);  //не получается без new
+        return null;
+    }
+
+
+
+ /*   @Override
+    public UserChannel create(User user, Channel channel) {
+        UserChannel entity=(userRepository.) //userChannelRepository.save(user, channel);  //не получается без new
         userChannelRepository.save(entity);
         return entity;
-    }
+    }*/
 
     @Override
     public void delete(int id) {

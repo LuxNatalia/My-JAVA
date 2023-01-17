@@ -2,11 +2,11 @@ package org.telbot.telran.info.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="userChannel")// создаем таблицу в БД
+/*@Entity
+@Table(name="userChannel")// создаем таблицу в БД*/
 public class UserChannel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  //  @Id
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private User user;
     private Channel channel;
