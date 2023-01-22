@@ -8,8 +8,13 @@ import org.telbot.telran.info.model.UserChannel;
 import java.util.List;
 
 @Repository
-public interface UserChannelRepository extends JpaRepository {
-    List<UserChannel> findAll();
-    List<UserChannel> findBy(User user);
+public interface UserChannelRepository extends JpaRepository<UserChannel, Integer> {
 
+    List<UserChannel> findAllByUserId(int userId);
+
+    List<UserChannel> findAll();
+
+    List<UserChannel> findById(int id);
+
+    List<UserChannel> findAllByChannelId(int channelId);
 }

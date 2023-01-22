@@ -4,16 +4,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="tgUser")// создаем таблицу в БД
+@Table(name="tg_user")// создаем таблицу в БД
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name="name")
     private String name;
 
-    public User() {
+        public User() {
         //
     }
+
+    public User(String name) {
+        this.name = name;
+    }
+
 
     public Integer getId() {
         return id;
@@ -29,5 +35,10 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User " + id +" " + name ;
     }
 }

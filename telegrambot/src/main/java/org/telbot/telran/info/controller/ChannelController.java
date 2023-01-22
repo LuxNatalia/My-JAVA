@@ -16,14 +16,6 @@ import java.util.Optional;
 @RequestMapping("/channels")
 public class ChannelController {
 
-    //public API
-    //0. list channels
-    //1. create channel
-    //2. update channel
-    //3. delete channel
-    //4. get channel
-
-    //создать все эти методы
     @Autowired
     private ChannelService channelService;
 
@@ -32,9 +24,9 @@ public class ChannelController {
       return channelService.list();
     }
 
-    @PostMapping
-    public Channel create(Channel channel) {
-        Channel entity = channelService.create(channel);
+    @PostMapping("/channel")
+    public Channel create(String name, long channelId) {
+        Channel entity = channelService.create(name, channelId);
         return entity;
     }
     @PutMapping
@@ -48,7 +40,7 @@ public class ChannelController {
         channelService.delete(id);
 
     }
-    @GetMapping
+    @GetMapping("/channel")
     public Optional<Channel> getChannel(Integer id){
         return channelService.getChannel(id);
 

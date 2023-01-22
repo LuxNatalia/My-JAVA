@@ -2,41 +2,59 @@ package org.telbot.telran.info.model;
 
 import javax.persistence.*;
 
-/*@Entity
-@Table(name="userChannel")// создаем таблицу в БД*/
+@Entity
+@Table(name = "userChannel")// создаем таблицу в БД*/
 public class UserChannel {
-  //  @Id
-  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private User user;
-    private Channel channel;
 
-    public UserChannel(User user, Channel channel) {
-        this.user = user;
-        this.channel = channel;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name="userId")
+    private int userId;
+    @Column(name="channelId")
+    private int channelId;
+    @Column(name="isOn")
+    private boolean isOn;
+
+    public UserChannel(UserChannel userChannel) {
+        //
     }
 
-    public Integer getId() {
+    public UserChannel(int userId, int channelId) {
+        this.userId = userId;
+        this.channelId = channelId;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Channel getChannel() {
-        return channel;
+    public int getChannelId() {
+        return channelId;
     }
 
-    public void setChannel(Channel channel) {
-        this.channel = channel;
+    public void setChannelId(int channelId) {
+        this.channelId = channelId;
     }
+
+    public boolean getIsOn() {
+        return isOn;
+    }
+
+    public void setIsOn(boolean isOn) {
+        this.isOn = isOn;
+    }
+
 }

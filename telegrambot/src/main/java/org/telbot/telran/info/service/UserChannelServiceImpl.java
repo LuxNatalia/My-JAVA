@@ -9,8 +9,10 @@ import org.telbot.telran.info.repository.ChannelRepository;
 import org.telbot.telran.info.repository.UserChannelRepository;
 import org.telbot.telran.info.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class UserChannelServiceImpl implements UserChannelService {
 
@@ -24,26 +26,75 @@ public class UserChannelServiceImpl implements UserChannelService {
     private UserChannelRepository userChannelRepository;
 
     @Override
-    public List<UserChannel> list(User user) {
-        return userChannelRepository.findBy(user);
+    public List<UserChannel> list() {
+        return userChannelRepository.findAll();
     }
 
     @Override
-    public UserChannel create(User user, Channel channel) {
-        return null;
+    public List<UserChannel> listByUser(User user) {
+        return userChannelRepository.findAllByUserId(user.getId());
     }
 
+    @Override
+    public List<UserChannel> listByChannel(Channel channel) {
+        return userChannelRepository.findAllByChannelId(channel.getId());
+    }
 
-
- /*   @Override
-    public UserChannel create(User user, Channel channel) {
-        UserChannel entity=(userRepository.) //userChannelRepository.save(user, channel);  //не получается без new
-        userChannelRepository.save(entity);
+    @Override
+    public UserChannel update(UserChannel userChannel) {
+        UserChannel userChannelEntity = (UserChannel) userChannelRepository.findById(userChannel.getId());
+        userChannel.setIsOn(userChannel.getIsOn());
+        UserChannel entity=userChannelRepository.save(userChannel);
         return entity;
-    }*/
+    }
 
     @Override
-    public void delete(int id) {
-        userChannelRepository.deleteById(id);
+    public Optional<UserChannel> getUserChannel(int id) {
+        UserChannel userChannel = (UserChannel) userChannelRepository.findById(id);
+        return Optional.ofNullable(userChannel);
     }
+
+    @Override
+    public UserChannel addUserChannel(UserChannel userChannel) {
+        UserChannel entity = userChannelRepository.save(new UserChannel(userChannel));
+        return entity;
+
+    }
+
+    @Override
+    public UserChannel addUserChannel(User user, Channel channel) {
+
+        return userChannelRepository.save((new UserChannel(user.getId(), channel.getId())));
+
+    }
+
+    @Override
+    public List<UserChannel> list(User user) {
+        return userChannelRepository.findAllByUserId(user.getId());
+    }
+
+    @Override
+    public void makeSubscriptionOn(int userChannelId) {
+        UserChannel userChannelEntity = userChannelRepository.findById(userChannelId).stream().findFirst().get();
+        userChannelEntity.setIsOn(true);
+        userChannelRepository.save(userChannelEntity);
+    }
+
+    @Override
+    public void makeSubscriptionOff(int userChannelId) {
+        UserChannel userChannelEntity = userChannelRepository.findById(userChannelId).stream().findFirst().get();
+        userChannelEntity.setIsOn(false);
+        userChannelRepository.save(userChannelEntity);
+    }
+
+    @Override
+    public List<Channel> listChannelByUser(User user) {
+        List<Integer> channelIds = userChannelRepository.findAllByUserId(user.getId()).stream().map(
+                UserChannel::getChannelId).collect(Collectors.toList());
+        return channelRepository.findAllById(channelIds);
+
+    }
+
 }
+
+

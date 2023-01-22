@@ -14,7 +14,7 @@ public interface ChannelService {
 
     List<Channel> list();
 
-    Channel create (Channel channel);
+    Channel create(Channel channel);
 
     Channel update(Channel channel);
 
@@ -22,4 +22,5 @@ public interface ChannelService {
 
     Optional<Channel> getChannel(Integer id);
 
+    Channel create(String name, long channelId);
 }

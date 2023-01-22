@@ -15,13 +15,13 @@ public interface UserServiсe {
 
     List<User> list();
 
-    User create(User user);
-
     User update(User user);
 
     void delete(int id);
 
     Optional<User> getUser(int id);
 
+    User create(User user);
 
+    User create(String name);
 }

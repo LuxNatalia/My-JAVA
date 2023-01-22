@@ -3,9 +3,9 @@ package org.telbot.telran.info.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telbot.telran.info.model.Channel;
+import org.telbot.telran.info.model.User;
 import org.telbot.telran.info.repository.ChannelRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +23,8 @@ public class ChannelServiceImpl implements ChannelService {
 
     @Override
     public Channel create(Channel channel) {
-        Channel entity = channelRepository.save(channel); //поле id=null
-        return entity; //возвращает уже с объектом базы данных. с id
+        Channel entity = channelRepository.save(new Channel(channel));
+        return entity;
     }
 
     @Override
@@ -47,5 +47,12 @@ public class ChannelServiceImpl implements ChannelService {
         Optional<Channel> channel = channelRepository.findById(id);
 
         return channel;
+    }
+
+    @Override
+    public Channel create(String name, long groupId) {
+        Channel entity; //поле id=null
+        entity = channelRepository.save(new Channel(name, groupId));
+        return entity; //возвращает уже с объектом базы данных. с id
     }
 }

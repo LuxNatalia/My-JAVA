@@ -6,4 +6,14 @@ import javax.persistence.Table;
 /*@Entity
 @Table(name="event")// создаем таблицу в БД*/
 public class Event {
+
+    int userId;
+
+
+
+    //пользователь
+    //канал
+    //дата создания
+    //....
+    //true-false
 }

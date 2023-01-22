@@ -27,13 +27,7 @@ public class UserServiсeImpl implements UserServiсe {
         return userRepository.findAll();
     }
 
-    @Override
-    public User create(User user) {
-        User entity = userRepository.save(user);
-        return entity; //возвращает уже с объектом базы данных. с id
-    }
-
-    @Override
+     @Override
     public User update(User user) {
         User userEntity=userRepository.findById(user.getId()).get();
         user.setName(user.getName()==null ? userEntity.getName(): user.getName());
@@ -47,10 +41,23 @@ public class UserServiсeImpl implements UserServiсe {
 
     }
 
+    @Override
+    public User create(String name) {
+        User entity = userRepository.save(new User(name));
+        return entity;
+    }
+
+
+    @Override
+    public User create(User user) {
+        return userRepository.save(user);
+    }
+
     public Optional<User> getUser(int id) {
         Optional<User> user = userRepository.findById(id);
 
         return user;
     }
+
 
 }

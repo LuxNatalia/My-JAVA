@@ -2,7 +2,6 @@ package org.telbot.telran.info.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.telbot.telran.info.model.Channel;
 import org.telbot.telran.info.model.User;
 import org.telbot.telran.info.service.UserServiсe;
 
@@ -18,21 +17,20 @@ public class UserController {
 
    @Autowired
     private UserServiсe userService;
-
+   //localhost:8080/tgUsers
     @GetMapping
     public List<User> list(){
         return userService.list();
     }
-
-    @GetMapping
-    public Optional<User> getUser(int id){
+    //localhost:8080/tgUsers/3
+    @GetMapping("/{userId}")
+    public Optional<User> getUser(@PathVariable (name = "userId") int id){
         return userService.getUser(id);
     }
 
     @PostMapping
-    public User createUser(User user){
-        User entity = userService.create(user);
-        return entity;
+    public User createUser(@RequestBody User user){
+      return userService.create(user);
     }
 
     @PutMapping
@@ -41,8 +39,8 @@ public class UserController {
         return userEntity;
     }
 
-    @DeleteMapping
-    public void deleteUser(int id){
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable (name = "userId") int id){
         userService.delete(id);
     }
 
