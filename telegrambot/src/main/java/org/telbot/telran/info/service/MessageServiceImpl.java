@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.telbot.telran.info.model.Message;
 import org.telbot.telran.info.repository.MessageRepository;
 
+
 import java.util.List;
 
 @Service
@@ -15,9 +16,14 @@ public class MessageServiceImpl implements MessageService {
     private MessageRepository messageRepository;
 
     @Override
-    public List<org.telegram.telegrambots.meta.api.objects.Message> list() {
+    public List<Message> list() {
         return messageRepository.findAll();
 
+    }
+
+    @Override
+    public Object create(Message message) {
+        return null;
     }
 
     @Override

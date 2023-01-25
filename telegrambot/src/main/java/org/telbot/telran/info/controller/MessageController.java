@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.telbot.telran.info.model.Message;
 import org.telbot.telran.info.service.MessageService;
 
+
 import java.util.List;
 
 @RestController
@@ -17,13 +18,13 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping
-    public List<org.telegram.telegrambots.meta.api.objects.Message> list(){
-        List<org.telegram.telegrambots.meta.api.objects.Message> messages = messageService.list();
+    public List<Message> list(){
+        List<Message> messages = messageService.list();
         return messages;
     }
 
     @PostMapping
-    public Object create(Message message) {
+    public Object create(org.telegram.telegrambots.meta.api.objects.Message message) {
         Object entity = messageService.create(message);
         return entity;
     }

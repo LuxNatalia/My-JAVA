@@ -17,7 +17,7 @@ public class Message {
     @Column(name = "is_new")
     boolean isNew;
 
-    public Message(Message message) {
+    public Message(org.telegram.telegrambots.meta.api.objects.Message message) {
         //
     }
 

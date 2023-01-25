@@ -23,7 +23,7 @@ public class TelegramBot extends TelegramLongPollingBot implements Switchable {
     private CommandService commandService;
 
     @Autowired
-    private MessageService messageService;
+    private MessageService telegramMessageService;
 
     @Override
     public String getBotUsername() {
@@ -50,9 +50,10 @@ public class TelegramBot extends TelegramLongPollingBot implements Switchable {
 
 
         Message message = update.getMessage();
-        messageService.create(update.getMessage());
+        MessageService.create(message);
 
-        Chat chat = message.getChat();
+        Chat chat = ((org.telegram.telegrambots.meta.api.objects.Message) message).getChat();
+
         if (chat.isGroupChat()) {
             Long chatId = message.getChatId();
             String text = message.getText();

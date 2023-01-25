@@ -12,6 +12,7 @@ import org.telbot.telran.info.configuration.BotConfiguration;
 public class   App {
 
     public static void main(String[] args) {
+
         SpringApplication.run(App.class,args);
 
 

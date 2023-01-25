@@ -40,8 +40,8 @@ public class ChannelController {
         channelService.delete(id);
 
     }
-    @GetMapping("/channel")
-    public Optional<Channel> getChannel(Integer id){
+    @GetMapping("/channel/{id}")
+    public Optional<Channel> getChannel(@PathVariable int id){
         return channelService.getChannel(id);
 
     }

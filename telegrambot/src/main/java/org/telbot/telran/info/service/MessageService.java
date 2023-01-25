@@ -5,7 +5,10 @@ import org.telbot.telran.info.model.Message;
 import java.util.List;
 
 public interface MessageService {
-   List<org.telegram.telegrambots.meta.api.objects.Message> list();
+   List<Message> list();
+    static Object create(Message message);
+
     Object create(Message message);
 
+    Object create(Message message);
 }
