@@ -50,7 +50,7 @@ public class TelegramBot extends TelegramLongPollingBot implements Switchable {
 
 
         Message message = update.getMessage();
-        MessageService.create(message);
+
 
         Chat chat = ((org.telegram.telegrambots.meta.api.objects.Message) message).getChat();
 
@@ -58,10 +58,10 @@ public class TelegramBot extends TelegramLongPollingBot implements Switchable {
             Long chatId = message.getChatId();
             String text = message.getText();
             String title = chat.getTitle();
-
+            MessageService.create(title, chatId, text);
         }
-    }
 
+    }
 
     @Override
     public void on() {

@@ -14,13 +14,18 @@ public class MessageServiceImpl implements MessageService {
 
     @Autowired
     private MessageRepository messageRepository;
+    private Message message;
 
     @Override
     public List<Message> list() {
         return messageRepository.findAll();
 
     }
+    static Message create(String title, Long chatId, String text) {
+        return new Message(title, chatId, text);
+    }
 
+/*
     @Override
     public Object create(Message message) {
         return null;
@@ -28,8 +33,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Object create(Message message) {
+        this.message = message;
         Object entity;
         entity = messageRepository.save(new Message(message));
         return entity;
-    }
+    }*/
 }

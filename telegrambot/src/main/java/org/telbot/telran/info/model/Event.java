@@ -8,6 +8,10 @@ import javax.persistence.Table;
 public class Event {
 
     int userId;
+    int chatId;
+    int numberOfMessages;
+    boolean isNew;
+
 
 
 

@@ -17,9 +17,6 @@ public class Message {
     @Column(name = "is_new")
     boolean isNew;
 
-    public Message(org.telegram.telegrambots.meta.api.objects.Message message) {
-        //
-    }
 
     public Message(String title, Long chatId, String text) {
         this.title = title;
@@ -27,7 +24,11 @@ public class Message {
         this.text = text;
     }
 
-    public int getMessageId() {
+    public Message(Message message) {
+        //
+    }
+
+    public long getMessageId() {
         return messageId;
     }
 

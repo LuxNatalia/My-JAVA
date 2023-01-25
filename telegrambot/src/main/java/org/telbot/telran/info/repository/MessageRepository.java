@@ -10,5 +10,6 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository {
    List<Message> findAll();
    List<Message> findAllByChatId();
+   List<Message> findAllByIsNew(boolean b);
 
 }

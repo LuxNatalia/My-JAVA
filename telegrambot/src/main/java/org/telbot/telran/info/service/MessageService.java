@@ -5,10 +5,19 @@ import org.telbot.telran.info.model.Message;
 import java.util.List;
 
 public interface MessageService {
-   List<Message> list();
-    static Object create(Message message);
+
+    static Message create(String title, Long messageId, String text) {
+        return null;
+    }
+
+
+    List<Message> list();
+/*
+    static Object create(Message message){
+        return null;
+    };
 
     Object create(Message message);
+*/
 
-    Object create(Message message);
 }

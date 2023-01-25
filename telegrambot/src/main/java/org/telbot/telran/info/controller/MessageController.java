@@ -24,8 +24,8 @@ public class MessageController {
     }
 
     @PostMapping
-    public Object create(org.telegram.telegrambots.meta.api.objects.Message message) {
-        Object entity = messageService.create(message);
+    public Object create(Message message) {
+        Object entity = MessageService.create(message.getTitle(), message.getMessageId(), message.getText());
         return entity;
     }
 }

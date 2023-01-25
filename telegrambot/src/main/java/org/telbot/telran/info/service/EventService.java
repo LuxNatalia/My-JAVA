@@ -8,4 +8,5 @@ import java.util.List;
 public interface EventService {
 
     List<Event> getNewEventsByUser(User user);
+
 }
